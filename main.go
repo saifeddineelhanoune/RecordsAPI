@@ -23,6 +23,10 @@ func GetAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
+func PostAlbums(c *gin.Context) {
+	
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/albums", GetAlbums)
