@@ -24,12 +24,20 @@ func GetAlbums(c *gin.Context) {
 }
 
 func PostAlbums(c *gin.Context) {
-	
+	var NewAlbum Album
+
+	if err := c.BindJSON(&NewAlbum); err != nil {
+		return 
+	}
+	albums = append(albums, NewAlbum)
+	c.IndentedJSON(http.StatusCreated, NewAlbum)
 }
+
+
 
 func main() {
 	router := gin.Default()
 	router.GET("/albums", GetAlbums)
-
+	router.POST("albums", PostAlbums)
 	router.Run("localhost:5000")
 }
